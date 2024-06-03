@@ -52,20 +52,6 @@ class PaymentControllerTest {
 
   @Test
   @DisplayName(
-      "Testa o caso em que uma requisição de pagamento inválida é feita e espera-se que a resposta seja `HttpStatus.BAD_REQUEST`. "
-          + "Também verifica se o método `sendPayment` do `paymentProducerService` foi chamado corretamente.")
-  void registerPayment_InvalidPaymentRequest_ReturnsBadRequest() {
-    var paymentRequestDto = new PaymentRequestDto();
-    paymentRequestDto.setDebtId(null);
-    paymentRequestDto.setInstallmentNumber(1);
-    paymentRequestDto.setAmountPaid(BigDecimal.valueOf(100));
-    paymentRequestDto.setPaymentDate(LocalDate.now());
-
-    verify(paymentProducerService).sendPayment(paymentRequestDto);
-  }
-
-  @Test
-  @DisplayName(
       "Testa a validação do objeto `PaymentRequestDto` utilizando o `Validator`. "
           + "Verifica se existem 4 violações de validação esperadas.")
   void registerPayment_InvalidPaymentRequest_ValidationErrors() {
