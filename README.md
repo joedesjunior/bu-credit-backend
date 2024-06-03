@@ -3,6 +3,8 @@
 
 Este projeto é um backend desenvolvido em Spring Boot que se conecta a um banco de dados PostgreSQL e utiliza Apache Kafka para comunicação assíncrona. A aplicação está configurada para ser executada em containers Docker, facilitando o processo de configuração e execução. Essa aplicação foi desenvolvida por Joedes Souza de Freitas Junior para uma avaliação técnica.
 
+![alt text](src/main/resources/static/bu-credit-backend.jpg)
+
 
 ## Download and Deploy
 
