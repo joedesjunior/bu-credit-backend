@@ -96,8 +96,7 @@ public class PaymentServiceImpl implements PaymentService {
       throw new IllegalArgumentException("amountPaid cannot be null");
     }
 
-    // Verificar se totalAmount é maior que 0 antes de aplicar a regra de juros
-    if (totalAmount > 0 && payment.getPaymentDate().isAfter(debt.getDueDate())) {
+    if (totalAmount != 0 && payment.getPaymentDate().isAfter(debt.getDueDate())) {
       totalAmount += totalAmount * 0.10;
       log.info("Interest applied. New totalAmount: {}", totalAmount);
     }
@@ -115,7 +114,7 @@ public class PaymentServiceImpl implements PaymentService {
 
   public void updateStatus(Double totalAmount, BigDecimal amountPaid, Debt debt) {
     double remainingAmount = totalAmount - amountPaid.doubleValue();
-    if (remainingAmount <= 0) {
+    if (remainingAmount <= 0 && totalAmount <= 0) {
       debt.setStatus(StatusDebt.PAY.getName());
       log.info("Debt status updated to: {}", debt.getStatus());
     }
