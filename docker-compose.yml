@@ -61,6 +61,18 @@ services:
       - "19000:9000"
     environment:
       KAFKA_BROKERCONNECT: kafka:9092
+  k6:
+    image: loadimpact/k6:latest
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
+    command: ["k6", "run", "/test.js"]
+    volumes:
+      - ./test.js:/test.js
+      - ./reports:/reports
+      - ./entrypoint.sh:/entrypoint.sh
+    depends_on:
+      - app
+    networks:
+      - broker-kafka
 
 networks:
   broker-kafka:

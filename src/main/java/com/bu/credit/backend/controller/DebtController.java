@@ -82,6 +82,7 @@ public class DebtController {
   public ResponseEntity<DebtResponseDto> getDebtById(@NotNull @PathVariable Long id) {
     try {
       var debt = debtService.getDebtById(id);
+      logger.info("Has returned debt: {}", debt.getCreditorName());
       return ResponseEntity.ok(debt);
     } catch (DebtNotFoundException e) {
       return ResponseEntity.status(404).body(null);
